@@ -34,7 +34,7 @@ function toggleTask() {
 
 function removeTask() {
   console.log('Remove Task');
-}
+}s
 
 function clearAll() {
   console.log('Clear All');
