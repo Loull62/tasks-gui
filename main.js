@@ -5,11 +5,12 @@ let goBtnEl = document.getElementById('go-btn');
 let menuEl = document.getElementById('menu');
 let tasksEl = document.getElementById('tasks');
 
-// Go Btn - Menu Listener
-goBtnEl.addEventListener('click', goBtnHandler);
-
 // Global Variables
 let tasks = [];
+displayAll();
+
+// Go Btn - Menu Listener
+goBtnEl.addEventListener('click', goBtnHandler);
 
 function goBtnHandler() {
   // Get Menu Selection
@@ -43,20 +44,28 @@ function toggleTask() {
   } else {
     task.completed = '';
   }
+  saveTasks();
   displayAll();
 }
 
 // Remove a task by index
 function removeTask() {
   let index = +prompt("Enter # of task:");
-  if (index >= 0&& index < tasks.length) {
+  if (index >= 0 && index < tasks.length) {
     //  Valid Index -> Remove
-
+    tasks.splice(index, 1);
+    saveTasks();
+    displayAll();
+  } else {
+    alert("Invalid Task #")
   }
 }
 
+// Clear all tasks
 function clearAll() {
-  console.log('Clear All');
+  tasks = [];
+  saveTasks();
+  displayAll();
 }
 
 // HELPER FUNCTION
@@ -80,8 +89,19 @@ function displayAll() {
 // Get html for given task
 function getTaskHTMLStr(task, i) {
   return `
-  <div>
+  <div class="${task.completed}">
   ${i}: ${task.description}
   </div>
   `;
+}
+
+// Save gloval tasks to local storage
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(tasks))
+}
+
+// Load tasks from local storage
+function loadTasks() {
+  let tasksStr = localStorage.getItem('tasks');
+  return JSON.parse(tasksStr) ?? [];
 }
