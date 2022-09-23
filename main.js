@@ -1,12 +1,12 @@
 // My Tasks Basic
-// 1:17 fourth vid
+
 // HTML Elements
 let goBtnEl = document.getElementById('go-btn');
 let menuEl = document.getElementById('menu');
 let tasksEl = document.getElementById('tasks');
 
 // Global Variables
-let tasks = [];
+let tasks = loadTasks();
 displayAll();
 
 // Go Btn - Menu Listener
