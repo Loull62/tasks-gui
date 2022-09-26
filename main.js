@@ -37,7 +37,7 @@ function addTask() {
 
 // Toggle completed status of a task
 function toggleTask() {
-  let index = +prompt('Enter # of taskL:');
+  let index = +prompt('Enter # of task:');
   let task = tasks[index];
   if (task.completed === '') {
     task.completed = 'completed';
@@ -50,14 +50,14 @@ function toggleTask() {
 
 // Remove a task by index
 function removeTask() {
-  let index = +prompt("Enter # of task:");
+  let index = +prompt('Enter # of task:');
   if (index >= 0 && index < tasks.length) {
     //  Valid Index -> Remove
     tasks.splice(index, 1);
     saveTasks();
     displayAll();
   } else {
-    alert("Invalid Task #")
+    alert('Invalid Task #')
   }
 }
 
@@ -73,13 +73,13 @@ function clearAll() {
 function newTask(taskDescription) {
   return {
     description: taskDescription,
-    completed: '',
+    completed: ' ',
   };
 }
 
 // Display all tasks in global tasks array
 function displayAll() {
-  let outputStr = '';
+  let outputStr =  '';
   for (let i = 0; 1 < tasks.length; i++) {
     outputStr += getTaskHTMLStr(tasks[i], i);
   }
@@ -89,7 +89,7 @@ function displayAll() {
 // Get html for given task
 function getTaskHTMLStr(task, i) {
   return `
-  <div class="${task.completed}">
+  <div class='${task.completed}'>
   ${i}: ${task.description}
   </div>
   `;
