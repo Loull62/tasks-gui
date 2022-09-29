@@ -73,7 +73,7 @@ function clearAll() {
 function newTask(taskDescription) {
   return {
     description: taskDescription,
-    completed: ' ',
+    completed: '',
   };
 }
 
